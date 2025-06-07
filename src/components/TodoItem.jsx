@@ -5,9 +5,13 @@ function TodoItem({ todo }) {//see how destructuring is done here and how it is 
     const {updateTodo,deleteTodo,toggleComplete} = useTodo()
     const [isTodoEditable,setIsTodoEditable] = useState(false)
     const [todoMsg,setTodoMsg]=useState(todo.todo)
-
+    const [copyMsg,setCopyMsg]=useState(todo.todo);
     const editTodo =()=>{
-        updateTodo(todo.id , {...todo, todo: todoMsg})
+         
+        if(todoMsg===""){setTodoMsg(copyMsg)}
+            updateTodo(todo.id , {...todo, todo: todoMsg})
+            setCopyMsg(todoMsg);
+        
         setIsTodoEditable(false)
     }
     const toggleCompleted =()=>{
